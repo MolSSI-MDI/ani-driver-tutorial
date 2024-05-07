@@ -1,0 +1,1106 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>MDI Driver Tutorial &#8212; MolSSI Driver Interface (MDI)  documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=2bf43996" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script src="_static/design-tabs.js?v=36754332"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'driver_tutorial';</script>
+    <link rel="icon" href="_static/molssi_square.png"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="TorchANI Tutorial" href="torchani_tutorial.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+<div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+    <span class="fa-solid fa-bars"></span>
+  </label>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/mdi-light.png" class="logo__image only-light" alt=""/>
+    <script>document.write(`<img src="_static/mdi-dark.png" class="logo__image only-dark" alt=""/>`);</script>
+  
+  
+    <p class="title logo__title">MolSSI Driver Interface</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav class="navbar-nav">
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="setup.html">
+                        Set Up
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="torchani_tutorial.html">
+                        TorchANI Tutorial
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="#">
+                        MDI Driver Tutorial
+                      </a>
+                    </li>
+                
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+                <li class="nav-item">
+                  <a class="nav-link dropdown-item nav-external" href="https://molssi.org">
+                    MolSSI
+                  </a>
+                </li>
+                
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/MolSSI/molssi_doc_theme" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/MolSSI_NSF" title="Twitter" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-twitter fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+    <label class="sidebar-toggle secondary-toggle" for="__secondary" tabindex="0">
+      <span class="fa-solid fa-outdent"></span>
+    </label>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          <div class="navbar-item">
+<nav class="navbar-nav">
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="setup.html">
+                        Set Up
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="torchani_tutorial.html">
+                        TorchANI Tutorial
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="#">
+                        MDI Driver Tutorial
+                      </a>
+                    </li>
+                
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-controls="pst-nav-more-links-2">
+                    More
+                </button>
+                <ul id="pst-nav-more-links-2" class="dropdown-menu">
+                    
+                <li class="nav-item">
+                  <a class="nav-link dropdown-item nav-external" href="https://molssi.org">
+                    MolSSI
+                  </a>
+                </li>
+                
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/MolSSI/molssi_doc_theme" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/MolSSI_NSF" title="Twitter" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-twitter fa-lg" aria-hidden="true"></i></span>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"></div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumb">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page">MDI Driver Tutorial</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="mdi-driver-tutorial">
+<h1>MDI Driver Tutorial<a class="headerlink" href="#mdi-driver-tutorial" title="Link to this heading">#</a></h1>
+<p>In this setion, we will use the MolSSI Driver Interface to perform molecular dynamics simulations with TorchANI.</p>
+<div class="note admonition">
+<p class="admonition-title">Prerequisites</p>
+<p>Before starting this tutorial, you should have already completed the <a class="reference internal" href="setup.html"><span class="doc std std-doc">Computer Set Up</span></a>.
+It is also suggested that you have completed the <a class="reference internal" href="torchani_tutorial.html"><span class="doc std std-doc">TorchANI Tutorial</span></a>.</p>
+</div>
+<p>To complete this tutorial, clone the <a class="reference external" href="https://github.com/janash/mdi-ani-workshop.git">starting repository</a>.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-0">
+shell</label><div class="sd-tab-content docutils">
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/janash/mdi-ani-workshop.git
+</pre></div>
+</div>
+</div>
+</div>
+<section id="examining-initial-files">
+<h2>Examining Initial Files<a class="headerlink" href="#examining-initial-files" title="Link to this heading">#</a></h2>
+<p>The starting repository contains a set of files we will need to complete this tutorial.
+We will be using TorchANI to compute forces on atoms given a particular molecular configuration,
+passing those forces to LAMMPS using MDI, then allowing LAMMPs to perform the dynamics steps.</p>
+<p>When you clone the repository, you will see the following directory structure:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>├── README.md
+├── docker
+│   └── Dockerfile
+├── lammps
+│   └── water
+│       ├── lammps.data
+│       ├── lammps.in
+│       └── outfiles
+├── mdi-ani-tutorial
+│   ├── mdi-ani-tutorial.py
+│   └── util.py
+└── mdimechanic.yml
+</pre></div>
+</div>
+<p>This is our starting set of files.
+This is roughly the set of files you would obtain from running the MDI CookieCutter.
+In this case, we have added some starting files to perform a simulation using LAMMPS.
+We’ve also added several utility functions to <code class="docutils literal notranslate"><span class="pre">util.py</span></code> that will help use complete this tutorial more easily.</p>
+<p>All of the files associated with the LAMMPS simulation are in the <code class="docutils literal notranslate"><span class="pre">lammps</span></code> directory.
+If you view these files, you will see a folder called <code class="docutils literal notranslate"><span class="pre">water</span></code> that contains the LAMMPS input file <code class="docutils literal notranslate"><span class="pre">lammps.in</span></code> and the LAMMPS data file <code class="docutils literal notranslate"><span class="pre">lammps.data</span></code>.
+This will be our starting configuration for our simulation using TorchANI.</p>
+<section id="python-driver">
+<h3>Python Driver<a class="headerlink" href="#python-driver" title="Link to this heading">#</a></h3>
+<p>Next, open the file <code class="docutils literal notranslate"><span class="pre">mdi-ani-tutorial.py</span></code> in the <code class="docutils literal notranslate"><span class="pre">mdi-ani-tutorial</span></code> directory.
+This file contains the Python code that will be used to run the simulation.</p>
+<p>To start, you will see the following code:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-1" name="sd-tab-set-1" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-1">
+mdi-ani-tutorial.py</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+
+<span class="c1"># Import the MDI Library</span>
+<span class="kn">import</span> <span class="nn">mdi</span>
+
+<span class="c1"># Import MPI Library</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">mpi4py</span> <span class="kn">import</span> <span class="n">MPI</span>
+
+    <span class="n">use_mpi4py</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="n">mpi_comm_world</span> <span class="o">=</span> <span class="n">MPI</span><span class="o">.</span><span class="n">COMM_WORLD</span>
+<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+    <span class="n">use_mpi4py</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">mpi_comm_world</span> <span class="o">=</span> <span class="kc">None</span>
+
+<span class="c1"># Import parser</span>
+<span class="kn">from</span> <span class="nn">util</span> <span class="kn">import</span> <span class="n">create_parser</span><span class="p">,</span> <span class="n">connect_to_engines</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+
+    <span class="c1"># Read in the command-line options</span>
+    <span class="n">args</span> <span class="o">=</span> <span class="n">create_parser</span><span class="p">()</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
+
+    <span class="n">mdi_options</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">mdi</span>
+
+    <span class="k">if</span> <span class="n">mdi_options</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">mdi_options</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="s2">&quot;-role DRIVER -name driver -method TCP -port 8021 -hostname localhost&quot;</span>
+        <span class="p">)</span>
+        <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Warning: -mdi not provided. Using default value: </span><span class="si">{</span><span class="n">mdi_options</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Initialize the MDI Library</span>
+    <span class="n">mdi</span><span class="o">.</span><span class="n">MDI_Init</span><span class="p">(</span><span class="n">mdi_options</span><span class="p">)</span>
+
+    <span class="c1"># Get the correct MPI intra-communicator for this code</span>
+    <span class="n">mpi_comm_world</span> <span class="o">=</span> <span class="n">mdi</span><span class="o">.</span><span class="n">MDI_MPI_get_world_comm</span><span class="p">()</span>
+
+    <span class="n">engines</span> <span class="o">=</span> <span class="n">connect_to_engines</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="c1">###########################</span>
+    <span class="c1"># Perform the simulation</span>
+    <span class="c1">###########################</span>
+
+    <span class="c1"># Send the &quot;EXIT&quot; command to each of the engines</span>
+    <span class="k">for</span> <span class="n">comm</span> <span class="ow">in</span> <span class="n">engines</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+        <span class="n">mdi</span><span class="o">.</span><span class="n">MDI_Send_Command</span><span class="p">(</span><span class="s2">&quot;EXIT&quot;</span><span class="p">,</span> <span class="n">comm</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The code that is present in the file to start is boilerplate code that initializes the MDI Library and connects to the engines (in this case, LAMMPS).
+We only need to worry about adding code in the section that says</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">###########################</span>
+<span class="c1"># Perform the simulation</span>
+<span class="c1">###########################</span>
+</pre></div>
+</div>
+</section>
+<section id="mdi-mechanic-configuration">
+<h3>MDI Mechanic Configuration<a class="headerlink" href="#mdi-mechanic-configuration" title="Link to this heading">#</a></h3>
+<p>The second important file is the <code class="docutils literal notranslate"><span class="pre">mdimechanic.yml</span></code> file.
+This file contains the configuration for the MDI Mechanic software.
+MDI Mechanic is a utility tool that can perform many functions related to MDI, including launching engines and running simulations.
+Under the hood, MDI Mechanic uses a software called Docker to launch engines and drivers.</p>
+<p>We’ve already configured the <code class="docutils literal notranslate"><span class="pre">mdimechanic.yml</span></code> file to install necessary dependencies for this tutorial and launch the LAMMPS engine.
+At the end of the file, you will see</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">lmp</span> <span class="o">-</span><span class="n">mdi</span> <span class="s2">&quot;-role ENGINE -name LAMMPS -method TCP -port 8021 -hostname ani-tutorial&quot;</span> <span class="o">-</span><span class="n">l</span> <span class="n">outfiles</span><span class="o">/</span><span class="n">log</span><span class="o">.</span><span class="n">lammps</span> <span class="o">-</span><span class="ow">in</span> <span class="n">lammps</span><span class="o">.</span><span class="ow">in</span> <span class="o">&gt;</span> <span class="n">outfiles</span><span class="o">/</span><span class="n">water_tutorial</span><span class="o">.</span><span class="n">out</span>
+</pre></div>
+</div>
+<p>This is a launch command for LAMMPS.
+If you’ve used LAMMPS before, you will recognize this as the command to run a LAMMPS simulation with an additional flag <code class="docutils literal notranslate"><span class="pre">-mdi</span></code> that tells LAMMPS to connect to the MDI driver.</p>
+<p>To confirm that your set up is correct, you can run the following command:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-2" name="sd-tab-set-2" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-2">
+shell</label><div class="sd-tab-content docutils">
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>mdimechanic<span class="w"> </span>run<span class="w"> </span>--name<span class="w"> </span>ani-tutorial
+</pre></div>
+</div>
+</div>
+</div>
+<p>This command will launch the LAMMPS engine and the MDI driver.
+Upon successful completion of this command, you should see the following output:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Running</span> <span class="n">a</span> <span class="n">custom</span> <span class="n">calculation</span> <span class="k">with</span> <span class="n">MDI</span> <span class="n">Mechanic</span><span class="o">.</span>
+<span class="o">====================================================</span>
+<span class="o">================</span> <span class="n">Output</span> <span class="kn">from</span> <span class="nn">Docker</span> <span class="o">================</span>
+<span class="o">====================================================</span>
+<span class="n">Attaching</span> <span class="n">to</span> <span class="n">temp</span><span class="o">-</span><span class="n">ani</span><span class="o">-</span><span class="n">tutorial</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">temp</span><span class="o">-</span><span class="n">lammps</span><span class="o">-</span><span class="mi">1</span>
+<span class="n">temp</span><span class="o">-</span><span class="n">ani</span><span class="o">-</span><span class="n">tutorial</span><span class="o">-</span><span class="mi">1</span> <span class="n">exited</span> <span class="k">with</span> <span class="n">code</span> <span class="mi">0</span>
+<span class="n">temp</span><span class="o">-</span><span class="n">lammps</span><span class="o">-</span><span class="mi">1</span> <span class="n">exited</span> <span class="k">with</span> <span class="n">code</span> <span class="mi">0</span>
+
+<span class="o">====================================================</span>
+<span class="o">==============</span> <span class="n">End</span> <span class="n">Output</span> <span class="kn">from</span> <span class="nn">Docker</span> <span class="o">==============</span>
+<span class="o">====================================================</span>
+<span class="n">Success</span><span class="p">:</span> <span class="n">The</span> <span class="n">driver</span> <span class="n">ran</span> <span class="n">to</span> <span class="n">completion</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>You will also see several files have appeared in the <code class="docutils literal notranslate"><span class="pre">lammps/water/outfiles</span></code> directory.
+You will see <code class="docutils literal notranslate"><span class="pre">log.lammps</span></code> and <code class="docutils literal notranslate"><span class="pre">water_tutorial.out</span></code>.
+Both of these will show that LAMMPS started.
+However, you will not see any time step information because we have not yet instructed LAMMPS to run any steps through the input file or MDI Driver.</p>
+</section>
+</section>
+<section id="getting-started-with-mdi">
+<h2>Getting Started with MDI<a class="headerlink" href="#getting-started-with-mdi" title="Link to this heading">#</a></h2>
+<p>Now that we have confirmed that the MDI driver and LAMMPS engine are running correctly, we can write the code that will perform the simulation.
+We will build this section up slowly.
+A key concept that we will need to understand for this section is the concept of an “engine” in our driver.
+If you look at the starting driver code, you will see the following line:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">engines</span> <span class="o">=</span> <span class="n">connect_to_engines</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">connect_to_engines</span></code> function is a helper function that will connect to the engines that are running.
+In our case, we have only one engine running, which is LAMMPS.
+The <code class="docutils literal notranslate"><span class="pre">engines</span></code> variable is a dictionary that contains the MDI communicator for each engine.</p>
+<p>We can examine the engines that are running by adding the following code to the <code class="docutils literal notranslate"><span class="pre">#</span> <span class="pre">Perform</span> <span class="pre">the</span> <span class="pre">simulation</span></code> section:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-3" name="sd-tab-set-3" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-3">
+python</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Print the engines that are running</span>
+<span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">comm</span> <span class="ow">in</span> <span class="n">engines</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Engine </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2"> is running.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>If you rerun the driver code using <code class="docutils literal notranslate"><span class="pre">mdimechanic</span> <span class="pre">run</span> <span class="pre">--name</span> <span class="pre">ani-tutorial</span></code>, you will see the following output:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Running</span> <span class="n">a</span> <span class="n">custom</span> <span class="n">calculation</span> <span class="k">with</span> <span class="n">MDI</span> <span class="n">Mechanic</span><span class="o">.</span>
+<span class="o">====================================================</span>
+<span class="o">================</span> <span class="n">Output</span> <span class="kn">from</span> <span class="nn">Docker</span> <span class="o">================</span>
+<span class="o">====================================================</span>
+<span class="n">Attaching</span> <span class="n">to</span> <span class="n">temp</span><span class="o">-</span><span class="n">ani</span><span class="o">-</span><span class="n">tutorial</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">temp</span><span class="o">-</span><span class="n">lammps</span><span class="o">-</span><span class="mi">1</span>
+<span class="n">temp</span><span class="o">-</span><span class="n">ani</span><span class="o">-</span><span class="n">tutorial</span><span class="o">-</span><span class="mi">1</span>  <span class="o">|</span> <span class="n">Engine</span> <span class="n">LAMMPS</span> <span class="ow">is</span> <span class="n">running</span><span class="o">.</span>
+<span class="n">temp</span><span class="o">-</span><span class="n">ani</span><span class="o">-</span><span class="n">tutorial</span><span class="o">-</span><span class="mi">1</span> <span class="n">exited</span> <span class="k">with</span> <span class="n">code</span> <span class="mi">0</span>
+<span class="n">temp</span><span class="o">-</span><span class="n">lammps</span><span class="o">-</span><span class="mi">1</span> <span class="n">exited</span> <span class="k">with</span> <span class="n">code</span> <span class="mi">0</span>
+
+<span class="o">====================================================</span>
+<span class="o">==============</span> <span class="n">End</span> <span class="n">Output</span> <span class="kn">from</span> <span class="nn">Docker</span> <span class="o">==============</span>
+<span class="o">====================================================</span>
+<span class="n">Success</span><span class="p">:</span> <span class="n">The</span> <span class="n">driver</span> <span class="n">ran</span> <span class="n">to</span> <span class="n">completion</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>For convenience, we will create a variable called <code class="docutils literal notranslate"><span class="pre">lammps</span></code> to use for the rest of the tutorial.</p>
+<p>Add the following after the loop in your code:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">lammps</span> <span class="o">=</span> <span class="n">engines</span><span class="p">[</span><span class="s2">&quot;LAMMPS&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>At the end of this section, your code should look like the following:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-4" name="sd-tab-set-4" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-4">
+mdi-ani-tutorial.py</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+
+<span class="c1"># Import the MDI Library</span>
+<span class="kn">import</span> <span class="nn">mdi</span>
+
+<span class="c1"># Import MPI Library</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">mpi4py</span> <span class="kn">import</span> <span class="n">MPI</span>
+
+    <span class="n">use_mpi4py</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="n">mpi_comm_world</span> <span class="o">=</span> <span class="n">MPI</span><span class="o">.</span><span class="n">COMM_WORLD</span>
+<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+    <span class="n">use_mpi4py</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">mpi_comm_world</span> <span class="o">=</span> <span class="kc">None</span>
+
+<span class="c1"># Import parser</span>
+<span class="kn">from</span> <span class="nn">util</span> <span class="kn">import</span> <span class="n">create_parser</span><span class="p">,</span> <span class="n">connect_to_engines</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+
+    <span class="c1"># Read in the command-line options</span>
+    <span class="n">args</span> <span class="o">=</span> <span class="n">create_parser</span><span class="p">()</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
+
+    <span class="n">mdi_options</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">mdi</span>
+
+    <span class="k">if</span> <span class="n">mdi_options</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">mdi_options</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="s2">&quot;-role DRIVER -name driver -method TCP -port 8021 -hostname localhost&quot;</span>
+        <span class="p">)</span>
+        <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Warning: -mdi not provided. Using default value: </span><span class="si">{</span><span class="n">mdi_options</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Initialize the MDI Library</span>
+    <span class="n">mdi</span><span class="o">.</span><span class="n">MDI_Init</span><span class="p">(</span><span class="n">mdi_options</span><span class="p">)</span>
+
+    <span class="c1"># Get the correct MPI intra-communicator for this code</span>
+    <span class="n">mpi_comm_world</span> <span class="o">=</span> <span class="n">mdi</span><span class="o">.</span><span class="n">MDI_MPI_get_world_comm</span><span class="p">()</span>
+
+    <span class="n">engines</span> <span class="o">=</span> <span class="n">connect_to_engines</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="c1">###########################</span>
+    <span class="c1"># Perform the simulation</span>
+    <span class="c1">###########################</span>
+
+    <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">comm</span> <span class="ow">in</span> <span class="n">engines</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Engine </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2"> is running.&quot;</span><span class="p">)</span>
+
+    <span class="n">lammps</span> <span class="o">=</span> <span class="n">engines</span><span class="p">[</span><span class="s2">&quot;LAMMPS&quot;</span><span class="p">]</span>
+
+    <span class="c1"># Send the &quot;EXIT&quot; command to each of the engines</span>
+    <span class="k">for</span> <span class="n">comm</span> <span class="ow">in</span> <span class="n">engines</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+        <span class="n">mdi</span><span class="o">.</span><span class="n">MDI_Send_Command</span><span class="p">(</span><span class="s2">&quot;EXIT&quot;</span><span class="p">,</span> <span class="n">comm</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="sending-and-receiving-data">
+<h2>Sending and Receiving Data<a class="headerlink" href="#sending-and-receiving-data" title="Link to this heading">#</a></h2>
+<p>When using MDI, we retrieve data from the engine by sending a command to the engine and then receiving the data.
+The first command we use is the <code class="docutils literal notranslate"><span class="pre">mdi.MDI_Send_Command</span></code> function.
+The argument to this function is the command to send and the engine we would like to send the command to.
+When using <code class="docutils literal notranslate"><span class="pre">MDI_Send_Command</span></code>, we use <code class="docutils literal notranslate"><span class="pre">&lt;</span></code> to tell the engine to send data to the driver, and <code class="docutils literal notranslate"><span class="pre">&gt;</span></code> to tell the driver to send data to the engine.</p>
+<p>For example, to get the number of atoms in the system, we first call <code class="docutils literal notranslate"><span class="pre">mdi.MDI_Send_Command(&quot;&lt;NATOMS&quot;,</span> <span class="pre">lammps)</span></code> to tell LAMMPS to send the number of atoms.
+Then, we call <code class="docutils literal notranslate"><span class="pre">mdi.MDI_Recv</span></code> to receive the data.
+When using <code class="docutils literal notranslate"><span class="pre">mdi.MDI_Recv</span></code>, we have to tell MDI how many values we expect to get back and the data type for the value or values we expect to receive.</p>
+<p>Add the following code to the <code class="docutils literal notranslate"><span class="pre">#</span> <span class="pre">Perform</span> <span class="pre">the</span> <span class="pre">simulation</span></code> section to get the number of atoms in the system:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-5" name="sd-tab-set-5" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-5">
+python</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get the number of atoms in the system</span>
+<span class="n">mdi</span><span class="o">.</span><span class="n">MDI_Send_Command</span><span class="p">(</span><span class="s2">&quot;&lt;NATOMS&quot;</span><span class="p">,</span> <span class="n">lammps</span><span class="p">)</span>
+<span class="n">natoms</span> <span class="o">=</span> <span class="n">mdi</span><span class="o">.</span><span class="n">MDI_Recv</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">mdi</span><span class="o">.</span><span class="n">MDI_INT</span><span class="p">,</span> <span class="n">lammps</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The number of atoms in the system is </span><span class="si">{</span><span class="n">natoms</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>These set of commands first tells LAMMPS to send the number of atoms in the system (<code class="docutils literal notranslate"><span class="pre">mdi.MDI_Send_Command(&quot;&lt;NATOMS&quot;,</span> <span class="pre">lammps)</span></code>). After that, we receive the number of atoms from LAMMPS. Using <code class="docutils literal notranslate"><span class="pre">mdi.MDI_Recv</span></code>, we tell lammps we are expecting <code class="docutils literal notranslate"><span class="pre">1</span></code> value for <code class="docutils literal notranslate"><span class="pre">natoms</span></code> and that its data type is an integer.</p>
+<div class="exercise admonition">
+<p class="admonition-title">Check Your Understanding</p>
+<p>Retrieve the box vectors from LAMMPS and print it to the screen.</p>
+<p>The command to get the box vectors is <code class="docutils literal notranslate"><span class="pre">&lt;CELL</span></code>. You expect this to contain 9 values (3 for each dimension).</p>
+<div class="solution dropdown admonition">
+<p class="admonition-title">Solution</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get the box size from LAMMPS  </span>
+<span class="n">mdi</span><span class="o">.</span><span class="n">MDI_Send_Command</span><span class="p">(</span><span class="s2">&quot;&lt;CELL&quot;</span><span class="p">,</span> <span class="n">lammps</span><span class="p">)</span>   
+<span class="n">box_vects</span> <span class="o">=</span> <span class="n">mdi</span><span class="o">.</span><span class="n">MDI_Recv</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="n">lammps</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The box size is </span><span class="si">{</span><span class="n">box_vects</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>With the above two commands, we have retrieved much of the information we know that we need when using TorchANI to compute forces.
+Other information we will need are the atomic identities and atomic positions.</p>
+<p>We will now add code to get the atomic identities.
+LAMMPS does not store atomic identities directly, but we can use the <code class="docutils literal notranslate"><span class="pre">MASSES</span></code> command to get the masses of the atoms.</p>
+<p>Add the following code to the <code class="docutils literal notranslate"><span class="pre">#</span> <span class="pre">Perform</span> <span class="pre">the</span> <span class="pre">simulation</span></code> section to get the atomic masses:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-6" name="sd-tab-set-6" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-6">
+python</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get the atomic masses</span>
+<span class="n">mdi</span><span class="o">.</span><span class="n">MDI_Send_Command</span><span class="p">(</span><span class="s2">&quot;&lt;MASSES&quot;</span><span class="p">,</span> <span class="n">lammps</span><span class="p">)</span>
+<span class="n">masses</span> <span class="o">=</span> <span class="n">mdi</span><span class="o">.</span><span class="n">MDI_Recv</span><span class="p">(</span><span class="n">natoms</span><span class="p">,</span> <span class="n">mdi</span><span class="o">.</span><span class="n">MDI_DOUBLE</span><span class="p">,</span> <span class="n">lammps</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>To retrieve the coordinates of the atoms, we use the <code class="docutils literal notranslate"><span class="pre">&lt;COORDS</span></code> command.
+We expect there to be <code class="docutils literal notranslate"><span class="pre">3</span> <span class="pre">*</span> <span class="pre">natoms</span></code> values returned, where each set of three values corresponds to the x, y, and z coordinates of an atom.</p>
+<p>Add the following code to the <code class="docutils literal notranslate"><span class="pre">#</span> <span class="pre">Perform</span> <span class="pre">the</span> <span class="pre">simulation</span></code> section to get the atomic coordinates:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-7" name="sd-tab-set-7" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-7">
+python</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get the atomic coordinates</span>
+<span class="n">mdi</span><span class="o">.</span><span class="n">MDI_Send_Command</span><span class="p">(</span><span class="s2">&quot;&lt;COORDS&quot;</span><span class="p">,</span> <span class="n">lammps</span><span class="p">)</span>
+<span class="n">coords</span> <span class="o">=</span> <span class="n">mdi</span><span class="o">.</span><span class="n">MDI_Recv</span><span class="p">(</span><span class="mi">3</span> <span class="o">*</span> <span class="n">natoms</span><span class="p">,</span> <span class="n">mdi</span><span class="o">.</span><span class="n">MDI_DOUBLE</span><span class="p">,</span> <span class="n">lammps</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;There are </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">coords</span><span class="p">)</span><span class="si">}</span><span class="s2"> coordinates in the system.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="exercise admonition">
+<p class="admonition-title">Exercise - Units</p>
+<p>Check the values printed when you print your box vectors and atomic coordinates.
+Are they the same as was specified in the LAMMPS input file?
+What could be happening?</p>
+<div class="solution dropdown admonition">
+<p class="admonition-title">Solution</p>
+<p>When you print the box vectors, you will see that the length of each side is 11.735.
+This is not the same as our input value from the LAMMPS input file (6.21).</p>
+<p>This is because LAMMPS uses a different unit system than the one we are using in our driver code.
+In LAMMPS, the units are in Angstroms, while in our driver code, we are using atomic units (Bohr radii).</p>
+</div>
+</div>
+<section id="fixing-units">
+<h3>Fixing Units<a class="headerlink" href="#fixing-units" title="Link to this heading">#</a></h3>
+<div class="caution admonition">
+<p class="admonition-title">MDI Units</p>
+<p>When using MDI, it is important to remember that the units used by the engine may not be the same as the units you are using in your driver code.
+MDI always expects to send and receive data in atomic units.
+This means that if you are using a different unit system in your engine, you will need to convert the units to atomic units before sending or receiving data.</p>
+</div>
+<p>Let’s convert the units of the box vectors and atomic coordinates to atomic units.
+We will first retrieve a conversion factor from MDI, then convert the units of the box vectors and atomic coordinates.<br />
+It will be simplest to do this if we are using NumPy arrays, so we will convert the coordinates to a NumPy array.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-8" name="sd-tab-set-8" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-8">
+python</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">bohr_to_angstrom</span> <span class="o">=</span> <span class="n">mdi</span><span class="o">.</span><span class="n">MDI_Conversion_Factor</span><span class="p">(</span><span class="s2">&quot;bohr&quot;</span><span class="p">,</span><span class="s2">&quot;angstrom&quot;</span><span class="p">)</span>
+
+<span class="n">box_vects</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">box_vects</span><span class="p">)</span> <span class="o">*</span> <span class="n">bohr_to_angstrom</span>
+<span class="n">coords</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">coords</span><span class="p">)</span> <span class="o">*</span> <span class="n">bohr_to_angstrom</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The box size is </span><span class="si">{</span><span class="n">box_vects</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="driving-a-simulation-using-mdi">
+<h2>Driving a Simulation using MDI<a class="headerlink" href="#driving-a-simulation-using-mdi" title="Link to this heading">#</a></h2>
+<p>Now that we’ve seen how to retrieve data from LAMMPS, we can start to drive a simulation using MDI.
+MDI is capable of “driving” a simulation code, which means we can send it to various points in the simulation code to perform tasks that you choose.
+This is accomplished through the concept of “nodes” in MDI.
+In an MDI engine, the <code class="docutils literal notranslate"><span class="pre">&#64;INIT_MD</span></code> node is the point where a molecular dynamics simulation is initialized.
+At this point, system properties like the number of atoms, the box size, and the atomic positions are set.
+Note that this initialization is dependent on the input file that you prepare for LAMMPS.</p>
+<p>Whenever we want to send a command to an engine, we use the <code class="docutils literal notranslate"><span class="pre">MDI_Send_Command</span></code> function.
+This function takes two arguments: the command to send and the communicator for the engine.</p>
+<p>Add the following code to the <code class="docutils literal notranslate"><span class="pre">#</span> <span class="pre">Perform</span> <span class="pre">the</span> <span class="pre">simulation</span></code> section to tell LAMMPS to initialize molecular dynamics:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-9" name="sd-tab-set-9" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-9">
+python</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Send the INIT_MD command to LAMMPS</span>
+<span class="n">mdi</span><span class="o">.</span><span class="n">MDI_Send_Command</span><span class="p">(</span><span class="s2">&quot;@INIT_MD&quot;</span><span class="p">,</span> <span class="n">lammps</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Just running this code won’t look like it did anything.
+However, internally, LAMMPS has initialized the molecular dynamics simulation and moved to the specified node.</p>
+<p>To perform dynamics, we will want to send MDI to the <code class="docutils literal notranslate"><span class="pre">&#64;FORCES</span></code> node for our desired number of steps.
+We will do this by first setting a variable for the number of steps we want to run and then sending the <code class="docutils literal notranslate"><span class="pre">&#64;FORCES</span></code> command to LAMMPS for each step.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-10" name="sd-tab-set-10" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-10">
+python</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set the number of steps to run    </span>
+<span class="n">nsteps</span> <span class="o">=</span> <span class="mi">10</span>
+
+<span class="c1"># Run the dynamics  </span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nsteps</span><span class="p">):</span>    
+    <span class="n">mdi</span><span class="o">.</span><span class="n">MDI_Send_Command</span><span class="p">(</span><span class="s2">&quot;@FORCES&quot;</span><span class="p">,</span> <span class="n">lammps</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>If you check the output of the LAMMPS engine, you will see that it has run the dynamics steps.
+If you check <code class="docutils literal notranslate"><span class="pre">log.lammps</span></code> or <code class="docutils literal notranslate"><span class="pre">water_tutorial.out</span></code> in your <code class="docutils literal notranslate"><span class="pre">lammps/water/outfiles</span></code> directory, you will see output similar to the following:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Per</span> <span class="n">MPI</span> <span class="n">rank</span> <span class="n">memory</span> <span class="n">allocation</span> <span class="p">(</span><span class="nb">min</span><span class="o">/</span><span class="n">avg</span><span class="o">/</span><span class="nb">max</span><span class="p">)</span> <span class="o">=</span> <span class="mf">7.902</span> <span class="o">|</span> <span class="mf">7.902</span> <span class="o">|</span> <span class="mf">7.902</span> <span class="n">Mbytes</span>
+<span class="o">------------</span> <span class="n">Step</span>              <span class="mi">0</span> <span class="o">-----</span> <span class="n">CPU</span> <span class="o">=</span>            <span class="mi">0</span> <span class="p">(</span><span class="n">sec</span><span class="p">)</span> <span class="o">-------------</span>
+<span class="n">TotEng</span>   <span class="o">=</span>      <span class="o">-</span><span class="mf">122.2700</span> <span class="n">KinEng</span>   <span class="o">=</span>         <span class="mf">0.0000</span> <span class="n">Temp</span>     <span class="o">=</span>         <span class="mf">0.0000</span> 
+<span class="n">PotEng</span>   <span class="o">=</span>      <span class="o">-</span><span class="mf">122.2700</span> <span class="n">E_bond</span>   <span class="o">=</span>         <span class="mf">0.0000</span> <span class="n">E_angle</span>  <span class="o">=</span>         <span class="mf">0.0000</span> 
+<span class="n">E_dihed</span>  <span class="o">=</span>         <span class="mf">0.0000</span> <span class="n">E_impro</span>  <span class="o">=</span>         <span class="mf">0.0000</span> <span class="n">E_vdwl</span>   <span class="o">=</span>        <span class="mf">32.8080</span> 
+<span class="n">E_coul</span>   <span class="o">=</span>       <span class="mf">285.5475</span> <span class="n">E_long</span>   <span class="o">=</span>      <span class="o">-</span><span class="mf">440.6255</span> <span class="n">Press</span>    <span class="o">=</span>      <span class="mf">5318.3164</span>
+<span class="o">------------</span> <span class="n">Step</span>              <span class="mi">1</span> <span class="o">-----</span> <span class="n">CPU</span> <span class="o">=</span>   <span class="mf">0.00097576</span> <span class="p">(</span><span class="n">sec</span><span class="p">)</span> <span class="o">-------------</span>
+<span class="n">TotEng</span>   <span class="o">=</span>       <span class="o">-</span><span class="mf">41.4920</span> <span class="n">KinEng</span>   <span class="o">=</span>         <span class="mf">0.0432</span> <span class="n">Temp</span>     <span class="o">=</span>         <span class="mf">0.9656</span> 
+<span class="n">PotEng</span>   <span class="o">=</span>       <span class="o">-</span><span class="mf">41.5352</span> <span class="n">E_bond</span>   <span class="o">=</span>         <span class="mf">0.0000</span> <span class="n">E_angle</span>  <span class="o">=</span>         <span class="mf">0.0000</span> 
+<span class="n">E_dihed</span>  <span class="o">=</span>         <span class="mf">0.0000</span> <span class="n">E_impro</span>  <span class="o">=</span>         <span class="mf">0.0000</span> <span class="n">E_vdwl</span>   <span class="o">=</span>        <span class="mf">27.3276</span> 
+<span class="n">E_coul</span>   <span class="o">=</span>       <span class="mf">371.6457</span> <span class="n">E_long</span>   <span class="o">=</span>      <span class="o">-</span><span class="mf">440.5085</span> <span class="n">Press</span>    <span class="o">=</span>     <span class="mf">20062.1465</span>
+<span class="o">------------</span> <span class="n">Step</span>              <span class="mi">2</span> <span class="o">-----</span> <span class="n">CPU</span> <span class="o">=</span>  <span class="mf">0.001521911</span> <span class="p">(</span><span class="n">sec</span><span class="p">)</span> <span class="o">-------------</span>
+<span class="n">TotEng</span>   <span class="o">=</span>       <span class="o">-</span><span class="mf">41.4923</span> <span class="n">KinEng</span>   <span class="o">=</span>         <span class="mf">0.1493</span> <span class="n">Temp</span>     <span class="o">=</span>         <span class="mf">3.3400</span> 
+<span class="n">PotEng</span>   <span class="o">=</span>       <span class="o">-</span><span class="mf">41.6417</span> <span class="n">E_bond</span>   <span class="o">=</span>         <span class="mf">0.0000</span> <span class="n">E_angle</span>  <span class="o">=</span>         <span class="mf">0.0000</span> 
+<span class="n">E_dihed</span>  <span class="o">=</span>         <span class="mf">0.0000</span> <span class="n">E_impro</span>  <span class="o">=</span>         <span class="mf">0.0000</span> <span class="n">E_vdwl</span>   <span class="o">=</span>        <span class="mf">27.2650</span> 
+<span class="n">E_coul</span>   <span class="o">=</span>       <span class="mf">371.6024</span> <span class="n">E_long</span>   <span class="o">=</span>      <span class="o">-</span><span class="mf">440.5091</span> <span class="n">Press</span>    <span class="o">=</span>     <span class="mf">19377.1620</span>
+</pre></div>
+</div>
+<p>This output shows the energy of the system at each step.
+Right now, this energy is the energy that is calculated by LAMMPS for the forcefield we’ve specified in our input files.
+Our task in the next section will be to replace the forces LAMMPS calculates with those calculated by TorchANI.</p>
+</section>
+<section id="calculating-forces-using-torchani">
+<h2>Calculating Forces using TorchANI<a class="headerlink" href="#calculating-forces-using-torchani" title="Link to this heading">#</a></h2>
+<p>We now have all of the information we need to compute forces using TorchANI.
+If you’re interested in understanding more about how to use TorchANI, please see the <a class="reference internal" href="torchani_tutorial.html"><span class="doc std std-doc">TorchANI Tutorial</span></a>.</p>
+<p>When performing our MD, we know that we will need the updated coordinates at each step.
+Modify your for loop to retrieve the coordinates using MDI.
+We won’t do anything with them yet, but we will need them in the next section.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-11" name="sd-tab-set-11" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-11">
+python</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run the dynamics</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nsteps</span><span class="p">):</span>
+    
+    <span class="c1"># Send to @FORCES node</span>
+    <span class="n">mdi</span><span class="o">.</span><span class="n">MDI_Send_Command</span><span class="p">(</span><span class="s2">&quot;@FORCES&quot;</span><span class="p">,</span> <span class="n">lammps</span><span class="p">)</span> 
+
+    <span class="c1"># Get the atomic coordinates</span>
+    <span class="n">mdi</span><span class="o">.</span><span class="n">MDI_Send_Command</span><span class="p">(</span><span class="s2">&quot;&lt;COORDS&quot;</span><span class="p">,</span> <span class="n">lammps</span><span class="p">)</span>
+    <span class="n">coords</span> <span class="o">=</span> <span class="n">mdi</span><span class="o">.</span><span class="n">MDI_Recv</span><span class="p">(</span><span class="mi">3</span> <span class="o">*</span> <span class="n">natoms</span><span class="p">,</span> <span class="n">mdi</span><span class="o">.</span><span class="n">MDI_DOUBLE</span><span class="p">,</span> <span class="n">lammps</span><span class="p">)</span>
+    <span class="n">coords</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">coords</span><span class="p">)</span> <span class="o">*</span> <span class="n">bohr_to_angstrom</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>For the purposes of this tutorial, we have included a utility function called <code class="docutils literal notranslate"><span class="pre">calculate_ANI_forces</span></code> that uses the information we have retrieved already and returns the forces calculated by TorchANI.
+Let’s take a look at the docstring for this function.
+Open <code class="docutils literal notranslate"><span class="pre">util.py</span></code> and look at the <code class="docutils literal notranslate"><span class="pre">calculate_ANI_force</span></code> function.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">calculate_ANI_force</span><span class="p">(</span>
+    <span class="n">masses</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">]],</span> <span class="n">coordinates</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">cell</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calculate the ANI2x force for system of atoms.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    masses :</span>
+<span class="sd">        An array or list containing the masses of the atoms.</span>
+<span class="sd">    coordinates :</span>
+<span class="sd">        An array containing the 3D coordinates of the atoms.</span>
+<span class="sd">    cell :</span>
+<span class="sd">        A 3x3 array representing the periodic boundary conditions of the simulation cell.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    np.ndarray</span>
+<span class="sd">        A flattened array of forces acting on each atom, reshaped to be 1-dimensional.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+</pre></div>
+</div>
+<p>This function takes the masses, coordinates, and cell vectors as input and returns the forces calculated by TorchANI.</p>
+<p>Here, we are passing in the coordinates, box vectors, and masses that we have retrieved from LAMMPS.</p>
+<p>The forces returned by TorchANI are Hartree/Angstrom.
+MDI requires atomic units (Hartree/Bohr), so we divide by the conversion factor <code class="docutils literal notranslate"><span class="pre">bohr_to_angstrom</span></code> to convert the forces.</p>
+<div class="exercise admonition">
+<p class="admonition-title">Exercise - Forces</p>
+<p>Modify your loop so that you calculate the forces using TorchANI at each step.
+Then, use MDI to send the forces to LAMMPS.
+You can read about the <code class="docutils literal notranslate"><span class="pre">&gt;FORCES</span></code> command using the new <a class="reference external" href="https://janash.github.io/mdi-docs/api/mdi_standard/commands/data-exchange/FORCES.html">API Documentation</a>.
+The command to send the forces to LAMMPS is <code class="docutils literal notranslate"><span class="pre">&gt;FORCES</span></code>.
+<strong>Be sure to check the units of the forces you are sending to LAMMPS.</strong>
+MDI expects atomic units (Ha/Bohr)</p>
+<div class="solution dropdown admonition">
+<p class="admonition-title">Solution</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run the dynamics</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nsteps</span><span class="p">):</span>
+    
+    <span class="c1"># Send to @FORCES node</span>
+    <span class="n">mdi</span><span class="o">.</span><span class="n">MDI_Send_Command</span><span class="p">(</span><span class="s2">&quot;@FORCES&quot;</span><span class="p">,</span> <span class="n">lammps</span><span class="p">)</span> 
+
+    <span class="c1"># Get the atomic coordinates</span>
+    <span class="n">mdi</span><span class="o">.</span><span class="n">MDI_Send_Command</span><span class="p">(</span><span class="s2">&quot;&lt;COORDS&quot;</span><span class="p">,</span> <span class="n">lammps</span><span class="p">)</span>
+    <span class="n">coords</span> <span class="o">=</span> <span class="n">mdi</span><span class="o">.</span><span class="n">MDI_Recv</span><span class="p">(</span><span class="mi">3</span> <span class="o">*</span> <span class="n">natoms</span><span class="p">,</span> <span class="n">mdi</span><span class="o">.</span><span class="n">MDI_DOUBLE</span><span class="p">,</span> <span class="n">lammps</span><span class="p">)</span>
+
+    <span class="c1"># Calculate the forces</span>
+    <span class="n">ani_forces</span> <span class="o">=</span> <span class="n">calculate_ANI_force</span><span class="p">(</span><span class="n">masses</span><span class="p">,</span> <span class="n">coords</span><span class="p">,</span> <span class="n">box_vects</span><span class="p">)</span> <span class="o">/</span> <span class="n">bohr_to_angstrom</span>
+
+    <span class="c1"># Send the forces to LAMMPS</span>
+    <span class="n">mdi</span><span class="o">.</span><span class="n">MDI_Send_Command</span><span class="p">(</span><span class="s2">&quot;&gt;FORCES&quot;</span><span class="p">,</span> <span class="n">lammps</span><span class="p">)</span>
+    <span class="n">mdi</span><span class="o">.</span><span class="n">MDI_Send</span><span class="p">(</span><span class="n">ani_forces</span><span class="p">,</span> <span class="n">lammps</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>After you have completed this exercise, you have successfully driven a simulation using MDI and TorchANI.
+You can increase your number of steps to run longer dynamics or modify the input file to change the simulation conditions.</p>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="torchani_tutorial.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">TorchANI Tutorial</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examining-initial-files">Examining Initial Files</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#python-driver">Python Driver</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mdi-mechanic-configuration">MDI Mechanic Configuration</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-started-with-mdi">Getting Started with MDI</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sending-and-receiving-data">Sending and Receiving Data</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fixing-units">Fixing Units</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#driving-a-simulation-using-mdi">Driving a Simulation using MDI</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calculating-forces-using-torchani">Calculating Forces using TorchANI</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+
+  <div class="tocsection sourcelink">
+    <a href="_sources/driver_tutorial.md.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+  
+
+
+
+  
+  
+  
+  
+  
+  
+  
+
+
+<div class="row h-10">
+    <div class="col-2">
+        <a href="https://molssi.org/" target="_blank" title="Go to MolSSI in a new tab">
+            <img src="_static/molssi_main_logo.png" class="logo__image only-light footer_logo" alt="Logo image">
+            <img src="_static/molssi_main_logo_inverted_white.png" class="logo__image only-dark footer_logo" alt="Logo image">
+        </a>
+    </div>
+    <div class="col-8">
+        <p> &copy; Copyright 2019-2023 <a href="https://molssi.org/">The Molecular Sciences Software Institute</a></p>
+        <p>Funded by the National Science Foundation 
+          <a href="https://nsf.gov/awardsearch/showAward?AWD_ID=1547580">OAC-1547580</a> and 
+          <a href="https://www.nsf.gov/awardsearch/showAward?AWD_ID=2136142">CHE-2136142.</a></p>
+ 
+        
+        <p class="sphinx-version">
+        Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.3.7.<br>
+        </p>
+        
+
+        <p class="theme-version">
+        Built with a customized <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.15.2.
+        </p>
+
+    </div>
+    <div class="col-2">
+        <a href="https://nsf.gov/" target="_blank" title="Go to the NSF in a new tab">
+            <img src="_static/nsf.png" class="footer_logo" alt="The NSF">
+          </a>
+    </div>
+</div></div>
+      
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+  </body>
+</html>
