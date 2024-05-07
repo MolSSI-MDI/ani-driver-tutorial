@@ -143,6 +143,19 @@ lmp -mdi "-role ENGINE -name LAMMPS -method TCP -port 8021 -hostname ani-tutoria
 This is a launch command for LAMMPS.
 If you've used LAMMPS before, you will recognize this as the command to run a LAMMPS simulation with an additional flag `-mdi` that tells LAMMPS to connect to the MDI driver.
 
+The first time you use this repository, you will need to run `mdimechanic build`
+
+````{tab-set} 
+
+```{tab-item} shell 
+
+:::{code-block} shell 
+mdimechanic build
+:::
+```
+
+````
+
 To confirm that your set up is correct, you can run the following command:
 
 ````{tab-set} 

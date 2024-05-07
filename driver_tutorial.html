@@ -567,10 +567,20 @@ At the end of the file, you will see</p>
 </div>
 <p>This is a launch command for LAMMPS.
 If you’ve used LAMMPS before, you will recognize this as the command to run a LAMMPS simulation with an additional flag <code class="docutils literal notranslate"><span class="pre">-mdi</span></code> that tells LAMMPS to connect to the MDI driver.</p>
-<p>To confirm that your set up is correct, you can run the following command:</p>
+<p>The first time you use this repository, you will need to run <code class="docutils literal notranslate"><span class="pre">mdimechanic</span> <span class="pre">build</span></code></p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-2" name="sd-tab-set-2" type="radio">
 </input><label class="sd-tab-label" for="sd-tab-item-2">
+shell</label><div class="sd-tab-content docutils">
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>mdimechanic<span class="w"> </span>build
+</pre></div>
+</div>
+</div>
+</div>
+<p>To confirm that your set up is correct, you can run the following command:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-3" name="sd-tab-set-3" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-3">
 shell</label><div class="sd-tab-content docutils">
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>mdimechanic<span class="w"> </span>run<span class="w"> </span>--name<span class="w"> </span>ani-tutorial
 </pre></div>
@@ -613,8 +623,8 @@ In our case, we have only one engine running, which is LAMMPS.
 The <code class="docutils literal notranslate"><span class="pre">engines</span></code> variable is a dictionary that contains the MDI communicator for each engine.</p>
 <p>We can examine the engines that are running by adding the following code to the <code class="docutils literal notranslate"><span class="pre">#</span> <span class="pre">Perform</span> <span class="pre">the</span> <span class="pre">simulation</span></code> section:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-3" name="sd-tab-set-3" type="radio">
-</input><label class="sd-tab-label" for="sd-tab-item-3">
+<input checked="checked" id="sd-tab-item-4" name="sd-tab-set-4" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-4">
 python</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Print the engines that are running</span>
 <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">comm</span> <span class="ow">in</span> <span class="n">engines</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
@@ -646,8 +656,8 @@ python</label><div class="sd-tab-content docutils">
 </div>
 <p>At the end of this section, your code should look like the following:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-4" name="sd-tab-set-4" type="radio">
-</input><label class="sd-tab-label" for="sd-tab-item-4">
+<input checked="checked" id="sd-tab-item-5" name="sd-tab-set-5" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-5">
 mdi-ani-tutorial.py</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">import</span> <span class="nn">warnings</span>
@@ -717,8 +727,8 @@ Then, we call <code class="docutils literal notranslate"><span class="pre">mdi.M
 When using <code class="docutils literal notranslate"><span class="pre">mdi.MDI_Recv</span></code>, we have to tell MDI how many values we expect to get back and the data type for the value or values we expect to receive.</p>
 <p>Add the following code to the <code class="docutils literal notranslate"><span class="pre">#</span> <span class="pre">Perform</span> <span class="pre">the</span> <span class="pre">simulation</span></code> section to get the number of atoms in the system:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-5" name="sd-tab-set-5" type="radio">
-</input><label class="sd-tab-label" for="sd-tab-item-5">
+<input checked="checked" id="sd-tab-item-6" name="sd-tab-set-6" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-6">
 python</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get the number of atoms in the system</span>
 <span class="n">mdi</span><span class="o">.</span><span class="n">MDI_Send_Command</span><span class="p">(</span><span class="s2">&quot;&lt;NATOMS&quot;</span><span class="p">,</span> <span class="n">lammps</span><span class="p">)</span>
@@ -751,8 +761,8 @@ Other information we will need are the atomic identities and atomic positions.</
 LAMMPS does not store atomic identities directly, but we can use the <code class="docutils literal notranslate"><span class="pre">MASSES</span></code> command to get the masses of the atoms.</p>
 <p>Add the following code to the <code class="docutils literal notranslate"><span class="pre">#</span> <span class="pre">Perform</span> <span class="pre">the</span> <span class="pre">simulation</span></code> section to get the atomic masses:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-6" name="sd-tab-set-6" type="radio">
-</input><label class="sd-tab-label" for="sd-tab-item-6">
+<input checked="checked" id="sd-tab-item-7" name="sd-tab-set-7" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-7">
 python</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get the atomic masses</span>
 <span class="n">mdi</span><span class="o">.</span><span class="n">MDI_Send_Command</span><span class="p">(</span><span class="s2">&quot;&lt;MASSES&quot;</span><span class="p">,</span> <span class="n">lammps</span><span class="p">)</span>
@@ -765,8 +775,8 @@ python</label><div class="sd-tab-content docutils">
 We expect there to be <code class="docutils literal notranslate"><span class="pre">3</span> <span class="pre">*</span> <span class="pre">natoms</span></code> values returned, where each set of three values corresponds to the x, y, and z coordinates of an atom.</p>
 <p>Add the following code to the <code class="docutils literal notranslate"><span class="pre">#</span> <span class="pre">Perform</span> <span class="pre">the</span> <span class="pre">simulation</span></code> section to get the atomic coordinates:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-7" name="sd-tab-set-7" type="radio">
-</input><label class="sd-tab-label" for="sd-tab-item-7">
+<input checked="checked" id="sd-tab-item-8" name="sd-tab-set-8" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-8">
 python</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get the atomic coordinates</span>
 <span class="n">mdi</span><span class="o">.</span><span class="n">MDI_Send_Command</span><span class="p">(</span><span class="s2">&quot;&lt;COORDS&quot;</span><span class="p">,</span> <span class="n">lammps</span><span class="p">)</span>
@@ -801,8 +811,8 @@ This means that if you are using a different unit system in your engine, you wil
 We will first retrieve a conversion factor from MDI, then convert the units of the box vectors and atomic coordinates.<br />
 It will be simplest to do this if we are using NumPy arrays, so we will convert the coordinates to a NumPy array.</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-8" name="sd-tab-set-8" type="radio">
-</input><label class="sd-tab-label" for="sd-tab-item-8">
+<input checked="checked" id="sd-tab-item-9" name="sd-tab-set-9" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-9">
 python</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">bohr_to_angstrom</span> <span class="o">=</span> <span class="n">mdi</span><span class="o">.</span><span class="n">MDI_Conversion_Factor</span><span class="p">(</span><span class="s2">&quot;bohr&quot;</span><span class="p">,</span><span class="s2">&quot;angstrom&quot;</span><span class="p">)</span>
 
@@ -828,8 +838,8 @@ Note that this initialization is dependent on the input file that you prepare fo
 This function takes two arguments: the command to send and the communicator for the engine.</p>
 <p>Add the following code to the <code class="docutils literal notranslate"><span class="pre">#</span> <span class="pre">Perform</span> <span class="pre">the</span> <span class="pre">simulation</span></code> section to tell LAMMPS to initialize molecular dynamics:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-9" name="sd-tab-set-9" type="radio">
-</input><label class="sd-tab-label" for="sd-tab-item-9">
+<input checked="checked" id="sd-tab-item-10" name="sd-tab-set-10" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-10">
 python</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Send the INIT_MD command to LAMMPS</span>
 <span class="n">mdi</span><span class="o">.</span><span class="n">MDI_Send_Command</span><span class="p">(</span><span class="s2">&quot;@INIT_MD&quot;</span><span class="p">,</span> <span class="n">lammps</span><span class="p">)</span>
@@ -842,8 +852,8 @@ However, internally, LAMMPS has initialized the molecular dynamics simulation an
 <p>To perform dynamics, we will want to send MDI to the <code class="docutils literal notranslate"><span class="pre">&#64;FORCES</span></code> node for our desired number of steps.
 We will do this by first setting a variable for the number of steps we want to run and then sending the <code class="docutils literal notranslate"><span class="pre">&#64;FORCES</span></code> command to LAMMPS for each step.</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-10" name="sd-tab-set-10" type="radio">
-</input><label class="sd-tab-label" for="sd-tab-item-10">
+<input checked="checked" id="sd-tab-item-11" name="sd-tab-set-11" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-11">
 python</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set the number of steps to run    </span>
 <span class="n">nsteps</span> <span class="o">=</span> <span class="mi">10</span>
@@ -887,8 +897,8 @@ If you’re interested in understanding more about how to use TorchANI, please s
 Modify your for loop to retrieve the coordinates using MDI.
 We won’t do anything with them yet, but we will need them in the next section.</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-11" name="sd-tab-set-11" type="radio">
-</input><label class="sd-tab-label" for="sd-tab-item-11">
+<input checked="checked" id="sd-tab-item-12" name="sd-tab-set-12" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-12">
 python</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run the dynamics</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nsteps</span><span class="p">):</span>
