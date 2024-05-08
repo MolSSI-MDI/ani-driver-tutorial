@@ -351,7 +351,7 @@ The command to get the box vectors is `<CELL`. You expect this to contain 9 valu
 :::{code-block} python
 # Get the box size from LAMMPS  
 mdi.MDI_Send_Command("<CELL", lammps)   
-box_vects = mdi.MDI_Recv(9, lammps)
+box_vects = mdi.MDI_Recv(9, mdi.MDI_DOUBLE, lammps)
 
 print(f"The box size is {box_vects}.")
 :::

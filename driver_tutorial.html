@@ -748,7 +748,7 @@ python</label><div class="sd-tab-content docutils">
 <p class="admonition-title">Solution</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get the box size from LAMMPS  </span>
 <span class="n">mdi</span><span class="o">.</span><span class="n">MDI_Send_Command</span><span class="p">(</span><span class="s2">&quot;&lt;CELL&quot;</span><span class="p">,</span> <span class="n">lammps</span><span class="p">)</span>   
-<span class="n">box_vects</span> <span class="o">=</span> <span class="n">mdi</span><span class="o">.</span><span class="n">MDI_Recv</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="n">lammps</span><span class="p">)</span>
+<span class="n">box_vects</span> <span class="o">=</span> <span class="n">mdi</span><span class="o">.</span><span class="n">MDI_Recv</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="n">mdi</span><span class="o">.</span><span class="n">MDI_DOUBLE</span><span class="p">,</span> <span class="n">lammps</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The box size is </span><span class="si">{</span><span class="n">box_vects</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
 </pre></div>
