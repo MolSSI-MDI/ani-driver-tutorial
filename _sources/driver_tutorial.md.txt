@@ -315,10 +315,19 @@ When using MDI, we retrieve data from the engine by sending a command to the eng
 The first command we use is the `mdi.MDI_Send_Command` function. 
 The argument to this function is the command to send and the engine we would like to send the command to.
 When using `MDI_Send_Command`, we use `<` to tell the engine to send data to the driver, and `>` to tell the driver to send data to the engine.
-
 For example, to get the number of atoms in the system, we first call `mdi.MDI_Send_Command("<NATOMS", lammps)` to tell LAMMPS to send the number of atoms.
-Then, we call `mdi.MDI_Recv` to receive the data.
+
+After we have sent the command to the engine, we have to retrieve the data.
+This is done with the `mdi.MDI_Recv` function.
 When using `mdi.MDI_Recv`, we have to tell MDI how many values we expect to get back and the data type for the value or values we expect to receive.
+They syntax is
+
+```python
+mdi.MDI_Recv(EXPECTED_NUMBER_OF_VALUES, DATA_TYPE, ENGINE_COMMUNICATOR)
+```
+
+The expected data types are defined in the MDI library.
+For example, `mdi.MDI_INT` is the data type for an integer, and `mdi.MDI_DOUBLE` is the data type for a double (decimal) value.
 
 Add the following code to the `# Perform the simulation` section to get the number of atoms in the system:
 
@@ -336,7 +345,8 @@ print(f"The number of atoms in the system is {natoms}.")
 ```
 ````
 
-These set of commands first tells LAMMPS to send the number of atoms in the system (`mdi.MDI_Send_Command("<NATOMS", lammps)`). After that, we receive the number of atoms from LAMMPS. Using `mdi.MDI_Recv`, we tell lammps we are expecting `1` value for `natoms` and that its data type is an integer.
+These set of commands first tells LAMMPS to send the number of atoms in the system (`mdi.MDI_Send_Command("<NATOMS", lammps)`). 
+After that, we receive the number of atoms from LAMMPS. Using `mdi.MDI_Recv`, we tell lammps we are expecting `1` value for `natoms` and that its data type is an integer.
 
 ````{admonition} Check Your Understanding 
 :class: exercise
@@ -344,6 +354,7 @@ These set of commands first tells LAMMPS to send the number of atoms in the syst
 Retrieve the box vectors from LAMMPS and print it to the screen.
 
 The command to get the box vectors is `<CELL`. You expect this to contain 9 values (3 for each dimension).
+The data type we expect is an mdi.MDI_DOUBLE.
 
 ```{admonition} Solution
 :class: solution dropdown

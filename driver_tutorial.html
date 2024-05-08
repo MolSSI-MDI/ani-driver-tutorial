@@ -721,10 +721,17 @@ mdi-ani-tutorial.py</label><div class="sd-tab-content docutils">
 <p>When using MDI, we retrieve data from the engine by sending a command to the engine and then receiving the data.
 The first command we use is the <code class="docutils literal notranslate"><span class="pre">mdi.MDI_Send_Command</span></code> function.
 The argument to this function is the command to send and the engine we would like to send the command to.
-When using <code class="docutils literal notranslate"><span class="pre">MDI_Send_Command</span></code>, we use <code class="docutils literal notranslate"><span class="pre">&lt;</span></code> to tell the engine to send data to the driver, and <code class="docutils literal notranslate"><span class="pre">&gt;</span></code> to tell the driver to send data to the engine.</p>
-<p>For example, to get the number of atoms in the system, we first call <code class="docutils literal notranslate"><span class="pre">mdi.MDI_Send_Command(&quot;&lt;NATOMS&quot;,</span> <span class="pre">lammps)</span></code> to tell LAMMPS to send the number of atoms.
-Then, we call <code class="docutils literal notranslate"><span class="pre">mdi.MDI_Recv</span></code> to receive the data.
-When using <code class="docutils literal notranslate"><span class="pre">mdi.MDI_Recv</span></code>, we have to tell MDI how many values we expect to get back and the data type for the value or values we expect to receive.</p>
+When using <code class="docutils literal notranslate"><span class="pre">MDI_Send_Command</span></code>, we use <code class="docutils literal notranslate"><span class="pre">&lt;</span></code> to tell the engine to send data to the driver, and <code class="docutils literal notranslate"><span class="pre">&gt;</span></code> to tell the driver to send data to the engine.
+For example, to get the number of atoms in the system, we first call <code class="docutils literal notranslate"><span class="pre">mdi.MDI_Send_Command(&quot;&lt;NATOMS&quot;,</span> <span class="pre">lammps)</span></code> to tell LAMMPS to send the number of atoms.</p>
+<p>After we have sent the command to the engine, we have to retrieve the data.
+This is done with the <code class="docutils literal notranslate"><span class="pre">mdi.MDI_Recv</span></code> function.
+When using <code class="docutils literal notranslate"><span class="pre">mdi.MDI_Recv</span></code>, we have to tell MDI how many values we expect to get back and the data type for the value or values we expect to receive.
+They syntax is</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">mdi</span><span class="o">.</span><span class="n">MDI_Recv</span><span class="p">(</span><span class="n">EXPECTED_NUMBER_OF_VALUES</span><span class="p">,</span> <span class="n">DATA_TYPE</span><span class="p">,</span> <span class="n">ENGINE_COMMUNICATOR</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The expected data types are defined in the MDI library.
+For example, <code class="docutils literal notranslate"><span class="pre">mdi.MDI_INT</span></code> is the data type for an integer, and <code class="docutils literal notranslate"><span class="pre">mdi.MDI_DOUBLE</span></code> is the data type for a double (decimal) value.</p>
 <p>Add the following code to the <code class="docutils literal notranslate"><span class="pre">#</span> <span class="pre">Perform</span> <span class="pre">the</span> <span class="pre">simulation</span></code> section to get the number of atoms in the system:</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-6" name="sd-tab-set-6" type="radio">
@@ -739,11 +746,13 @@ python</label><div class="sd-tab-content docutils">
 </div>
 </div>
 </div>
-<p>These set of commands first tells LAMMPS to send the number of atoms in the system (<code class="docutils literal notranslate"><span class="pre">mdi.MDI_Send_Command(&quot;&lt;NATOMS&quot;,</span> <span class="pre">lammps)</span></code>). After that, we receive the number of atoms from LAMMPS. Using <code class="docutils literal notranslate"><span class="pre">mdi.MDI_Recv</span></code>, we tell lammps we are expecting <code class="docutils literal notranslate"><span class="pre">1</span></code> value for <code class="docutils literal notranslate"><span class="pre">natoms</span></code> and that its data type is an integer.</p>
+<p>These set of commands first tells LAMMPS to send the number of atoms in the system (<code class="docutils literal notranslate"><span class="pre">mdi.MDI_Send_Command(&quot;&lt;NATOMS&quot;,</span> <span class="pre">lammps)</span></code>).
+After that, we receive the number of atoms from LAMMPS. Using <code class="docutils literal notranslate"><span class="pre">mdi.MDI_Recv</span></code>, we tell lammps we are expecting <code class="docutils literal notranslate"><span class="pre">1</span></code> value for <code class="docutils literal notranslate"><span class="pre">natoms</span></code> and that its data type is an integer.</p>
 <div class="exercise admonition">
 <p class="admonition-title">Check Your Understanding</p>
 <p>Retrieve the box vectors from LAMMPS and print it to the screen.</p>
-<p>The command to get the box vectors is <code class="docutils literal notranslate"><span class="pre">&lt;CELL</span></code>. You expect this to contain 9 values (3 for each dimension).</p>
+<p>The command to get the box vectors is <code class="docutils literal notranslate"><span class="pre">&lt;CELL</span></code>. You expect this to contain 9 values (3 for each dimension).
+The data type we expect is an mdi.MDI_DOUBLE.</p>
 <div class="solution dropdown admonition">
 <p class="admonition-title">Solution</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get the box size from LAMMPS  </span>
