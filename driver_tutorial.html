@@ -977,7 +977,7 @@ MDI expects atomic units (Ha/Bohr)</p>
 
     <span class="c1"># Send the forces to LAMMPS</span>
     <span class="n">mdi</span><span class="o">.</span><span class="n">MDI_Send_Command</span><span class="p">(</span><span class="s2">&quot;&gt;FORCES&quot;</span><span class="p">,</span> <span class="n">lammps</span><span class="p">)</span>
-    <span class="n">mdi</span><span class="o">.</span><span class="n">MDI_Send</span><span class="p">(</span><span class="n">ani_forces</span><span class="p">,</span> <span class="n">lammps</span><span class="p">)</span>
+    <span class="n">mdi</span><span class="o">.</span><span class="n">MDI_Send</span><span class="p">(</span><span class="n">ani_forces</span><span class="p">,</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">natoms</span><span class="p">,</span> <span class="n">mdi</span><span class="o">.</span><span class="n">MDI_DOUBLE</span><span class="p">,</span> <span class="n">lammps</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
