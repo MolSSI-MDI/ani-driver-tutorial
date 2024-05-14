@@ -55,7 +55,7 @@
     <link rel="icon" href="_static/molssi_square.png"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="TorchANI Tutorial" href="torchani_tutorial.html" />
+    <link rel="next" title="Calculating Molecular Energies" href="energy_calculations.html" />
     <link rel="prev" title="MolSSI Driver Interface TorchANI Tutorial" href="index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -159,8 +159,8 @@
                 
 
                     <li class="nav-item">
-                      <a class="nav-link nav-internal" href="torchani_tutorial.html">
-                        TorchANI Tutorial
+                      <a class="nav-link nav-internal" href="energy_calculations.html">
+                        Calculating Molecular Energies
                       </a>
                     </li>
                 
@@ -304,8 +304,8 @@ document.write(`
                 
 
                     <li class="nav-item">
-                      <a class="nav-link nav-internal" href="torchani_tutorial.html">
-                        TorchANI Tutorial
+                      <a class="nav-link nav-internal" href="energy_calculations.html">
+                        Calculating Molecular Energies
                       </a>
                     </li>
                 
@@ -444,6 +444,43 @@ document.write(`
                   
   <section id="set-up">
 <h1>Set Up<a class="headerlink" href="#set-up" title="Link to this heading">#</a></h1>
+<section id="github-codespaces-recommended">
+<h2>GitHub Codespaces (Recommended)<a class="headerlink" href="#github-codespaces-recommended" title="Link to this heading">#</a></h2>
+<p>We recommend using the <a class="reference external" href="https://codespaces.new/MolSSI-MDI/mdi-ani-workshop">GitHub Codespaces</a> we have prepared for this workshop.
+GitHub Codespaces are cloud-based development environments that are created directly from a GitHub repository.
+This Codespace will have all of the necessary software installed and configured for you to complete the tutorial.</p>
+<p>To use GitHub Codespaces, you must first <a class="reference external" href="https://github.com/signup">sign up for a GitHub account</a> if you do not have one.
+Then you can click the button below to open the code space.</p>
+<p><a class="reference external" href="https://codespaces.new/MolSSI-MDI/mdi-ani-workshop"><img alt="Open in GitHub Codespaces" src="https://github.com/codespaces/badge.svg" /></a></p>
+</section>
+<section id="installing-the-software-locally">
+<h2>Installing the Software Locally<a class="headerlink" href="#installing-the-software-locally" title="Link to this heading">#</a></h2>
+<p>You may also choose to install software and run the tutorial locally.
+In order to do so, you will need to have <a class="reference external" href="https://docs.docker.com/get-docker/">Docker</a> and Python installed on your machine.
+We recommend using the <a class="reference external" href="https://docs.conda.io/en/latest/miniconda.html">conda package manager</a> for Python installation and environment management.
+If you’d like to know more detailed instructions as well as MolSSI’s recommendations for computer set-up, see <a class="reference external" href="https://education.molssi.org/python-package-best-practices/setup.html">these instructions</a> from our Best Practices workshop.</p>
+<p>After ensuring you have the necessary software installed, create an environment for this project then install mdimechanic using pip:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-0">
+bash</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>create<span class="w"> </span>-n<span class="w"> </span>mdi-ani-workshop<span class="w"> </span><span class="nv">python</span><span class="o">=</span><span class="m">3</span>.11
+pip<span class="w"> </span>install<span class="w"> </span>mdimechanic
+</pre></div>
+</div>
+</div>
+</div>
+<p>To complete this tutorial, clone the <a class="reference external" href="https://github.com/MolSSI-MDI/mdi-ani-workshop.git">starting repository</a>.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-1" name="sd-tab-set-1" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-1">
+shell</label><div class="sd-tab-content docutils">
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/MolSSI-MDI/mdi-ani-workshop.git
+</pre></div>
+</div>
+</div>
+</div>
+</section>
 </section>
 
 
@@ -466,11 +503,11 @@ document.write(`
       </div>
     </a>
     <a class="right-next"
-       href="torchani_tutorial.html"
+       href="energy_calculations.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">TorchANI Tutorial</p>
+        <p class="prev-next-title">Calculating Molecular Energies</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -483,6 +520,19 @@ document.write(`
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#github-codespaces-recommended">GitHub Codespaces (Recommended)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-the-software-locally">Installing the Software Locally</a></li>
+</ul>
+  </nav></div>
 
   <div class="sidebar-secondary-item">
 
