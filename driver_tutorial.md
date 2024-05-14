@@ -623,7 +623,7 @@ for i in range(nsteps):
 
     # Send the forces to LAMMPS
     mdi.MDI_Send_Command(">FORCES", lammps)
-    mdi.MDI_Send(ani_forces, lammps)
+    mdi.MDI_Send(ani_forces, 3 * natoms, mdi.MDI_DOUBLE, lammps)
 :::
     
 ```     
