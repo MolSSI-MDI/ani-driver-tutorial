@@ -10,13 +10,13 @@ It is also suggested that you have completed the [TorchANI Tutorial](torchani_tu
 
 :::
 
-To complete this tutorial, clone the [starting repository](https://github.com/janash/mdi-ani-workshop.git).
+To complete this tutorial, clone the [starting repository](https://github.com/MolSSI-MDI/mdi-ani-workshop.git).
 
 ````{tab-set} 
 ```{tab-item} shell
 
 :::{code-block} shell  
-git clone https://github.com/janash/mdi-ani-workshop.git
+git clone https://github.com/MolSSI-MDI/mdi-ani-workshop.git
 :::
 
 ```

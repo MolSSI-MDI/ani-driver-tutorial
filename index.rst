@@ -31,7 +31,8 @@ This tutorial will walk you through creating an MDI Driver that uses [TorchANI](
    :titlesonly:
 
    setup
-   torchani_tutorial
+   mdimechanic
+   energy_calculations
    driver_tutorial
 
 
