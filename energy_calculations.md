@@ -14,7 +14,7 @@ These XYZ files come from a [database of water cluster minima](https://sites.uw.
 
 ## Energy Calculation and Benchmarking Script
 
-Open the script `xyz/energy_calculations.py` to see the starting code for this section.
+Open the script `energy/energy_calculations.py` to see the starting code for this section.
 The starting code includes functions for caluculating the energy of a system using ANI and Psi4.
 
 :::{tab-set}
@@ -22,7 +22,7 @@ The starting code includes functions for caluculating the energy of a system usi
 ````{tab-item} xyz/energy_calculations.py
 ```python
 """
-Retrieve xyz from a URL and calculate the energy using ANI
+Calculate energies using Psi4 and ANI2x for water clusters.
 """
 
 import glob
@@ -142,7 +142,7 @@ def calculate_Psi4_energy(xyz_file, name=None):
 
 if __name__ == "__main__":
 
-    xyz_files = glob.glob("scaling/*.xyz")
+    xyz_files = glob.glob("xyz/scaling/*.xyz")
 
     energies = []
     times = []
@@ -205,6 +205,7 @@ if __name__ == "__main__":
     plt.legend()
 
     plt.savefig("timing.png") 
+
 ```
 ````
 :::
@@ -226,7 +227,7 @@ Next, `cd` to the `xyz` directory and run the script.
 
 ````{tab-item} bash
 ```bash
-cd xyz
+cd energy
 python energy_calculations.py
 ```
 ````

@@ -44,6 +44,7 @@ docker:
     - /root/psi4conda/bin/pip install torch --index-url https://download.pytorch.org/whl/cpu
     - /root/psi4conda/bin/pip install torchani
     - /root/psi4conda/bin/pip install matplotlib
+    - /root/psi4conda/bin/pip install tabulate
     - /root/psi4conda/bin/pip cache purge
 ```
 
