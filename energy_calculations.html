@@ -57,7 +57,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="MDI Driver Tutorial" href="driver_tutorial.html" />
-    <link rel="prev" title="Set Up" href="setup.html" />
+    <link rel="prev" title="Using MDIMechanic" href="mdimechanic.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -159,16 +159,16 @@
                     </li>
                 
 
-                    <li class="nav-item current active">
-                      <a class="nav-link nav-internal" href="#">
-                        Calculating Molecular Energies
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="mdimechanic.html">
+                        Using MDIMechanic
                       </a>
                     </li>
                 
 
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="driver_tutorial.html">
-                        MDI Driver Tutorial
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="#">
+                        Calculating Molecular Energies
                       </a>
                     </li>
                 
@@ -178,6 +178,13 @@
                 </button>
                 <ul id="pst-nav-more-links" class="dropdown-menu">
                     
+                    <li class="nav-item">
+                      <a class="nav-link dropdown-item nav-internal" href="driver_tutorial.html">
+                        MDI Driver Tutorial
+                      </a>
+                    </li>
+                
+
                 <li class="nav-item">
                   <a class="nav-link dropdown-item nav-external" href="https://molssi.org">
                     MolSSI
@@ -304,16 +311,16 @@ document.write(`
                     </li>
                 
 
-                    <li class="nav-item current active">
-                      <a class="nav-link nav-internal" href="#">
-                        Calculating Molecular Energies
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="mdimechanic.html">
+                        Using MDIMechanic
                       </a>
                     </li>
                 
 
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="driver_tutorial.html">
-                        MDI Driver Tutorial
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="#">
+                        Calculating Molecular Energies
                       </a>
                     </li>
                 
@@ -323,6 +330,13 @@ document.write(`
                 </button>
                 <ul id="pst-nav-more-links-2" class="dropdown-menu">
                     
+                    <li class="nav-item">
+                      <a class="nav-link dropdown-item nav-internal" href="driver_tutorial.html">
+                        MDI Driver Tutorial
+                      </a>
+                    </li>
+                
+
                 <li class="nav-item">
                   <a class="nav-link dropdown-item nav-external" href="https://molssi.org">
                     MolSSI
@@ -457,14 +471,14 @@ These XYZ files come from a <a class="reference external" href="https://sites.uw
 </section>
 <section id="energy-calculation-and-benchmarking-script">
 <h2>Energy Calculation and Benchmarking Script<a class="headerlink" href="#energy-calculation-and-benchmarking-script" title="Link to this heading">#</a></h2>
-<p>Open the script <code class="docutils literal notranslate"><span class="pre">xyz/energy_calculations.py</span></code> to see the starting code for this section.
+<p>Open the script <code class="docutils literal notranslate"><span class="pre">energy/energy_calculations.py</span></code> to see the starting code for this section.
 The starting code includes functions for caluculating the energy of a system using ANI and Psi4.</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
 </input><label class="sd-tab-label" for="sd-tab-item-0">
 xyz/energy_calculations.py</label><div class="sd-tab-content docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">Retrieve xyz from a URL and calculate the energy using ANI</span>
+<span class="sd">Calculate energies using Psi4 and ANI2x for water clusters.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="kn">import</span> <span class="nn">glob</span>
@@ -584,7 +598,7 @@ xyz/energy_calculations.py</label><div class="sd-tab-content docutils">
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
 
-    <span class="n">xyz_files</span> <span class="o">=</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;scaling/*.xyz&quot;</span><span class="p">)</span>
+    <span class="n">xyz_files</span> <span class="o">=</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;xyz/scaling/*.xyz&quot;</span><span class="p">)</span>
 
     <span class="n">energies</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">times</span> <span class="o">=</span> <span class="p">[]</span>
@@ -647,6 +661,7 @@ xyz/energy_calculations.py</label><div class="sd-tab-content docutils">
     <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 
     <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s2">&quot;timing.png&quot;</span><span class="p">)</span> 
+
 </pre></div>
 </div>
 </div>
@@ -655,7 +670,7 @@ xyz/energy_calculations.py</label><div class="sd-tab-content docutils">
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-1" name="sd-tab-set-1" type="radio">
 </input><label class="sd-tab-label" for="sd-tab-item-1">
-ANI Energy Calculation</label><div class="sd-tab-content docutils">
+bash</label><div class="sd-tab-content docutils">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mdi<span class="w"> </span>interactive
 </pre></div>
 </div>
@@ -665,8 +680,8 @@ ANI Energy Calculation</label><div class="sd-tab-content docutils">
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-2" name="sd-tab-set-2" type="radio">
 </input><label class="sd-tab-label" for="sd-tab-item-2">
-ANI Energy Calculation</label><div class="sd-tab-content docutils">
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>xyz
+bash</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>energy
 python<span class="w"> </span>energy_calculations.py
 </pre></div>
 </div>
@@ -741,12 +756,12 @@ Does ANI provide the correct relative energies for the different benzene configu
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="setup.html"
+       href="mdimechanic.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Set Up</p>
+        <p class="prev-next-title">Using MDIMechanic</p>
       </div>
     </a>
     <a class="right-next"

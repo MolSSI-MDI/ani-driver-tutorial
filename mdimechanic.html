@@ -6,8 +6,9 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Index &#8212; MolSSI Driver Interface (MDI)  documentation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Using MDIMechanic &#8212; MolSSI Driver Interface (MDI)  documentation</title>
   
   
   
@@ -50,10 +51,12 @@
     <script src="_static/design-tabs.js?v=36754332"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'genindex';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'mdimechanic';</script>
     <link rel="icon" href="_static/molssi_square.png"/>
-    <link rel="index" title="Index" href="#" />
+    <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Calculating Molecular Energies" href="energy_calculations.html" />
+    <link rel="prev" title="Set Up" href="setup.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -155,8 +158,8 @@
                     </li>
                 
 
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="mdimechanic.html">
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="#">
                         Using MDIMechanic
                       </a>
                     </li>
@@ -273,6 +276,10 @@ document.write(`
   
 
   
+    <label class="sidebar-toggle secondary-toggle" for="__secondary" tabindex="0">
+      <span class="fa-solid fa-outdent"></span>
+    </label>
+  
 </div>
 
     </header>
@@ -283,9 +290,7 @@ document.write(`
       
       
       
-        
-      
-      <div class="bd-sidebar-primary bd-sidebar hide-on-wide">
+      <div class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -305,8 +310,8 @@ document.write(`
                     </li>
                 
 
-                    <li class="nav-item">
-                      <a class="nav-link nav-internal" href="mdimechanic.html">
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="#">
                         Using MDIMechanic
                       </a>
                     </li>
@@ -393,6 +398,15 @@ document.write(`
     
   </div>
   
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"></div>
+</nav></div>
+    </div>
+  
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
   </div>
@@ -408,7 +422,33 @@ document.write(`
           <div class="bd-content">
             <div class="bd-article-container">
               
-              <div class="bd-header-article"></div>
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumb">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page">Using MDIMechanic</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
               
               
               
@@ -416,12 +456,86 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-
-<h1 id="index">Index</h1>
-
-<div class="genindex-jumpbox">
- 
+  <section id="using-mdimechanic">
+<h1>Using MDIMechanic<a class="headerlink" href="#using-mdimechanic" title="Link to this heading">#</a></h1>
+<div class="note admonition">
+<p class="admonition-title">Prerequisites</p>
+<p>Before completing this section, make sure you have completed the setup instructions in the <a class="reference internal" href="setup.html"><span class="std std-doc">previous section</span></a>.</p>
 </div>
+<p>In this tutorial, we will use the MDIMechanic package to run our code.
+MDIMechanic is a Python package that provides an interface for running environments and MDI Engines.
+It orchestrates Docker containers using a streamlined set up process.</p>
+<p>The file <code class="docutils literal notranslate"><span class="pre">mdimechanic.yml</span></code> contains the configuration for the MDIMechanic environment.</p>
+<p>To get started, execute the following command in your terminal:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-0">
+bash</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mdimechanic<span class="w"> </span>build
+</pre></div>
+</div>
+</div>
+</div>
+<p>While your image is building, we can examine the <code class="docutils literal notranslate"><span class="pre">mdimechanic.yaml</span></code> file to see what is happening.
+Looking at the file, you will see the following:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">code_name</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;mdi-ani-tutorial&#39;</span>
+<span class="nt">docker</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">image_name</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;mdi-ani-tutorial&#39;</span>
+
+<span class="w">  </span><span class="nt">build_image</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">apt-get update &amp;&amp; apt-get install -y curl</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">curl &quot;http://vergil.chemistry.gatech.edu/psicode-download/Psi4conda-1.9.1-py311-Linux-x86_64.sh&quot; -o Psi4conda-1.9.1-py311-Linux-x86_64.sh --keepalive-time 2</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bash Psi4conda-1.9.1-py311-Linux-x86_64.sh -b -p $HOME/psi4conda</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">echo $&#39;. $HOME/psi4conda/etc/profile.d/conda.sh\nconda activate&#39; &gt;&gt; ~/.bashrc</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">source ~/.bashrc</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/root/psi4conda/bin/pip install pymdi</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/root/psi4conda/bin/pip install numpy</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/root/psi4conda/bin/pip install torch --index-url https://download.pytorch.org/whl/cpu</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/root/psi4conda/bin/pip install torchani</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/root/psi4conda/bin/pip install matplotlib</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/root/psi4conda/bin/pip install tabulate</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/root/psi4conda/bin/pip cache purge</span>
+</pre></div>
+</div>
+<p>This file specifies the name of the code, the Docker image to use, and the commands to run to build the image.
+The Docker image is built from a base image for MDI that has compilers and other necessary software installed.
+The <code class="docutils literal notranslate"><span class="pre">build_image</span></code> section specifies the commands to run to install the necessary software for the tutorial.
+We are installing Psi4, pymdi, numpy, torch, torchani, and matplotlib.
+Notice that this container is configured to install the CPU version of PyTorch (to save space and improve build time).</p>
+<section id="using-the-image">
+<h2>Using the Image<a class="headerlink" href="#using-the-image" title="Link to this heading">#</a></h2>
+<p>MDIMechanic has a command called <code class="docutils literal notranslate"><span class="pre">mdimechanic</span> <span class="pre">interactive</span></code> that will mount your local directory as a volume in the container and open a shell in the container.
+Execute MDIMechanic interactive with the following command:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-1" name="sd-tab-set-1" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-1">
+bash</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mdimechanic<span class="w"> </span>interactive
+</pre></div>
+</div>
+</div>
+</div>
+<p>You are now in the container and can use the software installed.
+Check the directory contents using <code class="docutils literal notranslate"><span class="pre">ls</span></code> and confirm that it is the same as your local directory.</p>
+<p>Open a Python interpreter and confirm that you can import torch and Psi4:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-2" name="sd-tab-set-2" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-2">
+python</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">import</span> <span class="nn">psi4</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>If you can import these packages, you have successfully set up your environment and are ready to run the tutorial.</p>
+<p>The other important section in <code class="docutils literal notranslate"><span class="pre">mdimechanic.yml</span></code> is the <code class="docutils literal notranslate"><span class="pre">run_scripts</span></code> section.
+In that section, you will see commands for launching LAMMPS as well as the MDI Driver we will be writing.
+If you are familiar with Docker, you may be interested to know that this section is used to specify a configuration for Docker Compose.
+It will be discussed further in the <a class="reference internal" href="driver_tutorial.html"><span class="std std-doc">Driver Tutorial</span></a>.</p>
+<p>In the next section, we will use MDI Mechanic and the <code class="docutils literal notranslate"><span class="pre">mdimechanic</span> <span class="pre">interactive</span></code> mode to run Psi4 and ANI for energy calculations.</p>
+</section>
+</section>
 
 
                 </article>
@@ -433,6 +547,24 @@ document.write(`
                 <footer class="prev-next-footer">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="setup.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Set Up</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="energy_calculations.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Calculating Molecular Energies</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
@@ -440,7 +572,31 @@ document.write(`
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"></div>
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-the-image">Using the Image</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+
+  <div class="tocsection sourcelink">
+    <a href="_sources/mdimechanic.md.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
               
             
           </div>
