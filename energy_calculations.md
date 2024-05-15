@@ -213,7 +213,7 @@ Run this script by opening the MDI Mechanic container in interactive mode.
 
 :::{tab-set}
 
-````{tab-item} ANI Energy Calculation
+````{tab-item} bash
 ```bash
 mdi interactive
 ```
@@ -224,7 +224,7 @@ Next, `cd` to the `xyz` directory and run the script.
 
 :::{tab-set}
 
-````{tab-item} ANI Energy Calculation
+````{tab-item} bash
 ```bash
 cd xyz
 python energy_calculations.py
