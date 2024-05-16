@@ -1,12 +1,14 @@
 # MDI Driver Tutorial
 
 In this setion, we will use the MolSSI Driver Interface to perform molecular dynamics simulations with TorchANI.
+ANI, or ANAKIN-ME: Accurate NeurAl networK engINe for Molecular Energies, is a deep learning-based method for computing molecular energies and forces. 
+You can read more about ANI [here](https://roitberg.chem.ufl.edu/research/).s
 
 :::{admonition} Prerequisites
 :class: note
 
 Before starting this tutorial, you should have already completed the [Computer Set Up](setup).
-It is also suggested that you have completed the [TorchANI Tutorial](torchani_tutorial).
+It is also suggested that you have completed the [Energy Calculation Lesson](energy_calculations).
 
 :::
 
@@ -312,6 +314,8 @@ if __name__ == "__main__":
 
 ## Sending and Receiving Data
 When using MDI, we retrieve data from the engine by sending a command to the engine and then receiving the data.
+Data that you can send or receive from an MDI engine is defined by the [MDI Standard](https://molssi-mdi.github.io/MDI_Library/html/mdi_standard.html).
+You can see a full list of command at the link above, or newer docs that are under development [here](https://molssi-mdi.github.io/MDI_Library/html/mdi_standard.html).
 The first command we use is the `mdi.MDI_Send_Command` function. 
 The argument to this function is the command to send and the engine we would like to send the command to.
 When using `MDI_Send_Command`, we use `<` to tell the engine to send data to the driver, and `>` to tell the driver to send data to the engine.
@@ -633,7 +637,13 @@ for i in range(nsteps):
 After you have completed this exercise, you have successfully driven a simulation using MDI and TorchANI.
 You can increase your number of steps to run longer dynamics or modify the input file to change the simulation conditions.
 
+## Exercises 
 
+### Adding a Minimization Step (Geometry Optimization)
+When performing molecular dynamics, you would typically do an energy minimization step (or geometry optimization) before performing dynamics.
+This is to ensure that the system is at a local minimum in the potential energy surface.
+We can add an energy minimization step to our simulation by sending our driver to the `@INIT_OPTG` node and running a minimization loop (similar to the dynamics loop).
+Add the ability to do a geometry optimization to your driver.
 
 
 

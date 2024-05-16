@@ -457,11 +457,13 @@ document.write(`
                   
   <section id="mdi-driver-tutorial">
 <h1>MDI Driver Tutorial<a class="headerlink" href="#mdi-driver-tutorial" title="Link to this heading">#</a></h1>
-<p>In this setion, we will use the MolSSI Driver Interface to perform molecular dynamics simulations with TorchANI.</p>
+<p>In this setion, we will use the MolSSI Driver Interface to perform molecular dynamics simulations with TorchANI.
+ANI, or ANAKIN-ME: Accurate NeurAl networK engINe for Molecular Energies, is a deep learning-based method for computing molecular energies and forces.
+You can read more about ANI <a class="reference external" href="https://roitberg.chem.ufl.edu/research/">here</a>.s</p>
 <div class="note admonition">
 <p class="admonition-title">Prerequisites</p>
 <p>Before starting this tutorial, you should have already completed the <a class="reference internal" href="setup.html"><span class="doc std std-doc">Computer Set Up</span></a>.
-It is also suggested that you have completed the <a class="reference internal" href="#torchani_tutorial"><span class="xref myst">TorchANI Tutorial</span></a>.</p>
+It is also suggested that you have completed the <a class="reference internal" href="energy_calculations.html"><span class="doc std std-doc">Energy Calculation Lesson</span></a>.</p>
 </div>
 <p>To complete this tutorial, clone the <a class="reference external" href="https://github.com/MolSSI-MDI/mdi-ani-workshop.git">starting repository</a>.</p>
 <div class="sd-tab-set docutils">
@@ -733,6 +735,8 @@ mdi-ani-tutorial.py</label><div class="sd-tab-content docutils">
 <section id="sending-and-receiving-data">
 <h2>Sending and Receiving Data<a class="headerlink" href="#sending-and-receiving-data" title="Link to this heading">#</a></h2>
 <p>When using MDI, we retrieve data from the engine by sending a command to the engine and then receiving the data.
+Data that you can send or receive from an MDI engine is defined by the <a class="reference external" href="https://molssi-mdi.github.io/MDI_Library/html/mdi_standard.html">MDI Standard</a>.
+You can see a full list of command at the link above, or newer docs that are under development <a class="reference external" href="https://molssi-mdi.github.io/MDI_Library/html/mdi_standard.html">here</a>.
 The first command we use is the <code class="docutils literal notranslate"><span class="pre">mdi.MDI_Send_Command</span></code> function.
 The argument to this function is the command to send and the engine we would like to send the command to.
 When using <code class="docutils literal notranslate"><span class="pre">MDI_Send_Command</span></code>, we use <code class="docutils literal notranslate"><span class="pre">&lt;</span></code> to tell the engine to send data to the driver, and <code class="docutils literal notranslate"><span class="pre">&gt;</span></code> to tell the driver to send data to the engine.
@@ -999,6 +1003,16 @@ MDI expects atomic units (Ha/Bohr)</p>
 <p>After you have completed this exercise, you have successfully driven a simulation using MDI and TorchANI.
 You can increase your number of steps to run longer dynamics or modify the input file to change the simulation conditions.</p>
 </section>
+<section id="exercises">
+<h2>Exercises<a class="headerlink" href="#exercises" title="Link to this heading">#</a></h2>
+<section id="adding-a-minimization-step-geometry-optimization">
+<h3>Adding a Minimization Step (Geometry Optimization)<a class="headerlink" href="#adding-a-minimization-step-geometry-optimization" title="Link to this heading">#</a></h3>
+<p>When performing molecular dynamics, you would typically do an energy minimization step (or geometry optimization) before performing dynamics.
+This is to ensure that the system is at a local minimum in the potential energy surface.
+We can add an energy minimization step to our simulation by sending our driver to the <code class="docutils literal notranslate"><span class="pre">&#64;INIT_OPTG</span></code> node and running a minimization loop (similar to the dynamics loop).
+Add the ability to do a geometry optimization to your driver.</p>
+</section>
+</section>
 </section>
 
 
@@ -1050,6 +1064,10 @@ You can increase your number of steps to run longer dynamics or modify the input
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#driving-a-simulation-using-mdi">Driving a Simulation using MDI</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calculating-forces-using-torchani">Calculating Forces using TorchANI</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exercises">Exercises</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-a-minimization-step-geometry-optimization">Adding a Minimization Step (Geometry Optimization)</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 
